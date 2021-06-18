@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>{{ request.user.username }}</h1>
+<!--											<p>A free and fully responsive site template</p>-->
+										</header>
+										<p>{{ request.user }}</p>
+                                        <p>{{ request.user.date_joined }}</p>
+
+
+									</div>
+									<span class="image object">
+										<img src="{{ request.user.image.url }}" style="width: 500px; height: 500px" alt="" />
+									</span>
+								</section>
+
+
+
+<h1>My Recipes</h1>
+<div class="posts">
+    {% for recipe in recipes %}
+    <article>
+        <a href="#" class="image"><img src="{{ recipe.get_image }}" style="width: 350px; height: 300px" alt="" /></a>
+        <h3>{{ recipe }}</h3>
+        <p>{{ recipe.description }}</p>
+        <ul class="actions">
+            <li><a href="{% url 'detail' recipe.id %}" class="button">More</a></li>
+        </ul>
+    </article>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+
